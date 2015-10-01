@@ -13,7 +13,7 @@ var Enemy = function(row) {
     this.y = 60 + row * 83;
 
     // Set Enemy initial speed (100-500)
-    this.speed = Math.random() * 400 + 100; 
+    this.speed = Math.random() * 400 + 100;
 };
 
 // Update the enemy's position, required method for game
@@ -51,7 +51,7 @@ var Player = function() {
 Player.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
-    // all computers.  
+    // all computers.
 };
 
 
