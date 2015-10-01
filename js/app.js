@@ -30,7 +30,7 @@ Enemy.prototype.update = function(dt) {
 
     // Check collision with player
     if (this.y === player.y && this.x > player.x - 75 && this.x < player.x + 75) {
-        player.score -= 1;
+        player.score -= 10;
         player.reset();
     }
 };
