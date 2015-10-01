@@ -29,8 +29,7 @@ Enemy.prototype.update = function(dt) {
 
     // Check collision with player
     if (this.y === player.y && this.x > player.x - 75 && this.x < player.x + 75) {
-        player.x = 202;
-        player.y = 392;
+        player.reset();
     }
 };
 
@@ -48,8 +47,7 @@ var Player = function() {
     this.sprite = 'images/char-boy.png';
 
     // Set Player initial location
-    this.x = 202;
-    this.y = 392;
+    this.reset();
 };
 
 // Update the player's position, required method for game
@@ -78,8 +76,7 @@ Player.prototype.handleInput = function(key) {
             if (this.y != 60) {
                 this.y -= 83;
             } else {
-                this.x = 202;
-                this.y = 392;
+                this.reset();
             }
             break;
         case "right":
@@ -93,6 +90,11 @@ Player.prototype.handleInput = function(key) {
             }
             break;
     };
+};
+
+Player.prototype.reset = function() {
+    this.x = 202;
+    this.y = 392;
 };
 
 
