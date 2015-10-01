@@ -13,7 +13,7 @@ var Enemy = function(row) {
     this.y = 60 + row * 83;
 
     // Set Enemy initial speed (100-500)
-    this.speed = Math.random() * 400 + 100;
+    this.setSpeed();
 };
 
 // Update the enemy's position, required method for game
@@ -25,6 +25,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
     if (this.x > 505) {
         this.x = -1000 + Math.floor(Math.random() * 900);
+        this.setSpeed();
     }
 
     // Check collision with player
@@ -38,6 +39,10 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+Enemy.prototype.setSpeed = function() {
+    this.speed = Math.random() * 400 + 100;
+}
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -113,7 +118,7 @@ Player.prototype.reset = function() {
 // Place the player object in a variable called player
 var allEnemies = [];
 function addEnemy() {
-    var enemiesInOneRow = 2;
+    var enemiesInOneRow = 3;
     for (var i = 0; i < enemiesInOneRow; i++) {
         for (var j = 0; j < 3; j++) {
             allEnemies.push(new Enemy(j));
