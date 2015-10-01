@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-
+// Parameter: row, in which to put the enemy
 var Enemy = function(row) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -40,6 +40,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Set enemy's speed
 Enemy.prototype.setSpeed = function() {
     this.speed = Math.random() * 400 + 100;
 }
@@ -67,8 +68,6 @@ Player.prototype.update = function(dt) {
     // all computers.
 };
 
-
-
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -77,6 +76,8 @@ Player.prototype.render = function() {
     ctx.fillText('Score: ' + this.score, 0, 40);
 };
 
+// Handle user's key input
+// Parameter: key, the key user release
 Player.prototype.handleInput = function(key) {
     switch (key) {
         case 'left':
@@ -90,6 +91,9 @@ Player.prototype.handleInput = function(key) {
             } else {
                 this.score += 10;
                 this.reset();
+                allGems.forEach(function(gem) {
+                    gem.setLoc();
+                });
             }
             break;
         case 'right':
@@ -105,19 +109,56 @@ Player.prototype.handleInput = function(key) {
     };
 };
 
+// Reset player's position to original spot
 Player.prototype.reset = function() {
     this.x = 202;
     this.y = 392;
 };
 
+// Gem class
+// Parameter: color, 'blue', 'green', or 'orange'
+var Gem = function(color) {
+    this.setLoc();
+    switch (color) {
+        case 'blue':
+            this.sprite = 'images/gem-blue.png';
+            this.score = 5;
+            break;
+        case 'green':
+            this.sprite = 'images/gem-green.png';
+            this.score = 10;
+            break;
+        case 'orange':
+            this.sprite = 'images/gem-orange.png';
+            this.score = 15;
+            break;
+    }
+};
 
+// Set gem's location
+Gem.prototype.setLoc = function() {
+    this.x = Math.floor(Math.random() * 5) * 101;
+    this.y = 60 + Math.floor(Math.random() * 3) * 83;
+};
 
+// Update the gem's position
+Gem.prototype.update = function() {
+    if (this.x === player.x && this.y === player.y) {
+        player.score += this.score;
+        this.x = 505;
+        this.y = 606;
+    }
+};
+
+// Draw gems on the screen
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 var allEnemies = [];
-function addEnemy() {
+allEnemies.add = function() {
     var enemiesInOneRow = 3;
     for (var i = 0; i < enemiesInOneRow; i++) {
         for (var j = 0; j < 3; j++) {
@@ -125,8 +166,19 @@ function addEnemy() {
         }
     }
 }
-addEnemy();
+allEnemies.add();
+
+// Place the player object in a variable called player
 var player = new Player();
+
+// Place all gem objects in an array called allGems
+var allGems = [];
+allGems.add = function() {
+    allGems.push(new Gem('blue'));
+    allGems.push(new Gem('green'));
+    allGems.push(new Gem('orange'));
+};
+allGems.add();
 
 
 // This listens for key presses and sends the keys to your
