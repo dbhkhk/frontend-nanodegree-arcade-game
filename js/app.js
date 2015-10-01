@@ -46,8 +46,11 @@ var Player = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
 
-    // Set Player initial location
+    // Set player initial location
     this.reset();
+
+    // Set player initial score
+    this.score = 0;
 };
 
 // Update the player's position, required method for game
@@ -63,28 +66,32 @@ Player.prototype.update = function(dt) {
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.font = '28pt cursive';
+    ctx.clearRect(0, 0, 505, 40);
+    ctx.fillText('Score: ' + this.score, 0, 40);
 };
 
 Player.prototype.handleInput = function(key) {
     switch (key) {
-        case "left":
+        case 'left':
             if (this.x != 0) {
                 this.x -= 101;
             }
             break;
-        case "up":
+        case 'up':
             if (this.y != 60) {
                 this.y -= 83;
             } else {
+                this.score += 10;
                 this.reset();
             }
             break;
-        case "right":
+        case 'right':
             if (this.x != 404) {
                 this.x += 101;
             }
             break;
-        case "down":
+        case 'down':
             if (this.y != 392) {
                 this.y += 83;
             }
@@ -105,7 +112,7 @@ Player.prototype.reset = function() {
 // Place the player object in a variable called player
 var allEnemies = [];
 function addEnemy() {
-    var enemiesInOneRow = 3;
+    var enemiesInOneRow = 2;
     for (var i = 0; i < enemiesInOneRow; i++) {
         for (var j = 0; j < 3; j++) {
             allEnemies.push(new Enemy(j));
