@@ -72,7 +72,7 @@ Player.prototype.update = function(dt) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     ctx.font = '28pt cursive';
-    ctx.clearRect(0, 0, 505, 40);
+    ctx.clearRect(0, 0, 505, 50);
     ctx.fillText('Score: ' + this.score, 0, 40);
 };
 
