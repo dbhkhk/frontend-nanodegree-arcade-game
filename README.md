@@ -1,6 +1,4 @@
-frontend-nanodegree-arcade-game
-===============================
-
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
-
-for self-checking their submission.
+# Arcade Game Project
+This is a project from [Udacity](https://www.udacity.com)'s [Front-End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). It is a game based on Frogger.
+### How to play
+Open `index.html` with your browser, you'll find instructions about controlling and scoring.
