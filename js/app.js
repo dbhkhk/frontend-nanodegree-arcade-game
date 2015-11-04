@@ -82,12 +82,12 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
     switch (key) {
         case 'left':
-            if (this.x != 0) {
+            if (this.x !== 0) {
                 this.x -= 101;
             }
             break;
         case 'up':
-            if (this.y != 60) {
+            if (this.y !== 60) {
                 this.y -= 83;
             } else {
                 this.score += 10;
@@ -98,16 +98,16 @@ Player.prototype.handleInput = function(key) {
             }
             break;
         case 'right':
-            if (this.x != 404) {
+            if (this.x !== 404) {
                 this.x += 101;
             }
             break;
         case 'down':
-            if (this.y != 392) {
+            if (this.y !== 392) {
                 this.y += 83;
             }
             break;
-    };
+    }
 };
 
 // Reset player's position to original spot
@@ -166,7 +166,7 @@ allEnemies.add = function() {
             allEnemies.push(new Enemy(j));
         }
     }
-}
+};
 allEnemies.add();
 
 // Place the player object in a variable called player
