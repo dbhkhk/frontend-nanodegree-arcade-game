@@ -22,6 +22,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    "use strict";
     this.x += this.speed * dt;
     if (this.x > 505) {
         this.x = -1000 + Math.floor(Math.random() * 900);
@@ -43,7 +44,7 @@ Enemy.prototype.render = function() {
 // Set enemy's speed
 Enemy.prototype.setSpeed = function() {
     this.speed = Math.random() * 400 + 100;
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
